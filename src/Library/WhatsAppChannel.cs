@@ -8,4 +8,8 @@ public class WhatsAppChannel : IMessageChannel
     {
 
     }
+    public string GetAddress(Contact contact)
+    {
+        return contact.Phone;
+    }
 }

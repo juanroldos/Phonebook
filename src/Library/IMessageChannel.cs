@@ -4,4 +4,5 @@ namespace Library;
 public interface IMessageChannel
 {
         void Send(Message message);
+        string GetAddress(Contact contact);
 }

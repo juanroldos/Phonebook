@@ -28,7 +28,29 @@ public class Phonebook
                 }
             }
         }
-
         return result;
+    }
+    public void AddContact(Contact contact)
+    {
+        this.persons.Add(contact);
+    }
+    public void RemoveContact(Contact contact)
+    {
+        this.persons.Remove(contact);
+    }
+    public void SendMessage(string[] names, string text, IMessageChannel channel)
+    {
+        List<Contact> receivers = this.Search(names);
+
+        foreach (Contact receiver in receivers)
+        {
+            string from = channel.GetAddress(this.Owner);
+            string to = channel.GetAddress(receiver);
+
+            Message message = new Message(from, to);
+            message.Text = text;
+
+            channel.Send(message);
+        }
     }
 }
